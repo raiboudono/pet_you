@@ -367,9 +367,7 @@ class Setting extends ConsumerWidget {
                                       child: Row(children: [
                                         TextButton(
                                           onPressed: () {
-                                            /*danger:
-                                        否定をはずす */
-                                            if (!appSetting!.premium) {
+                                            if (appSetting!.premium) {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (context) {
@@ -444,9 +442,7 @@ class Setting extends ConsumerWidget {
                                         const SizedBox(width: 80),
                                         TextButton(
                                           onPressed: () {
-                                            /*danger:
-                                        否定をはずす */
-                                            if (!appSetting!.premium) {
+                                            if (appSetting!.premium) {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (context) {

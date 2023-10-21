@@ -36,6 +36,8 @@ Pet.isar-lck
 Pet.isar
 isar.dll
 firebase_options.dart
+.vscode/launch.json
+android/app/google-services.json
 
 
 

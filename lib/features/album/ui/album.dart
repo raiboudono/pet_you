@@ -28,15 +28,6 @@ final videoControllerProvider = FutureProvider.autoDispose.family((
   return controller;
 });
 
-/*danger:
-削除について
-非表示または削除するにして
-非表示一覧を設けて、その中も個別削除ならびに一括削除をできるようにする
-というのはどうだろうか？？
-アルバムを真の意味で削除するとクイルがバグる
-
- */
-
 class Album extends ConsumerWidget {
   const Album({super.key});
   static const mediaTypes = ['image', 'video'];
@@ -47,9 +38,6 @@ class Album extends ConsumerWidget {
         .watch(albumProvider)
         .nonNulls
         .where((media) => media.visible)
-        /*danger: コレしてるのに null な video あるの調査必要
-         video については 存在しないなら例外になる(vscodeで例外外してる)
-         */
         .where((media) => File(media.path).existsSync())
         .toList();
 
@@ -227,8 +215,7 @@ class Album extends ConsumerWidget {
                     })
               else
                 const Center(child: Text('日記に保存した画像が表示されます')),
-              /*danger:否定をはずす */
-              if (!appSetting!.premium && videos.isNotEmpty)
+              if (appSetting!.premium && videos.isNotEmpty)
                 GridView.builder(
                     itemCount: videos.length,
                     gridDelegate:
@@ -296,8 +283,7 @@ class Album extends ConsumerWidget {
                         },
                       );
                     })
-              /*danger:否定をはずす */
-              else if (!appSetting.premium && videos.isEmpty)
+              else if (appSetting.premium && videos.isEmpty)
                 const Center(child: Text('日記に保存した動画が表示されます'))
               else
                 Center(
